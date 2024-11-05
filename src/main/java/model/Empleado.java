@@ -8,15 +8,15 @@ public class Empleado {
     private static int contadorId = 1;
     private int numEmpleado;
     private String nombre;
-    private String apellidos;
+    private String departamento;
     private LocalDate fechaNacimiento;
     private double salario;
     private double salarioMax;
 
-    public Empleado( String nombre, String apellidos, LocalDate fechaNacimiento, double salario, double salarioMax) {
+    public Empleado( String nombre, String departamento, LocalDate fechaNacimiento, double salario, double salarioMax) {
         this.numEmpleado = contadorId++;
         this.nombre = nombre;
-        this.apellidos = apellidos;
+        this.departamento = departamento;
         this.fechaNacimiento = fechaNacimiento;
         this.salario = salario;
         this.salarioMax = salarioMax;
@@ -50,12 +50,12 @@ public class Empleado {
         this.nombre = nombre;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getDepartamento() {
+        return departamento;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setDepartamento(String departamento) {
+        this.departamento = departamento;
     }
 
     public LocalDate getFechaNacimiento() {
@@ -87,12 +87,12 @@ public class Empleado {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Empleado empleado = (Empleado) o;
-        return numEmpleado == empleado.numEmpleado && Double.compare(salario, empleado.salario) == 0 && Double.compare(salarioMax, empleado.salarioMax) == 0 && Objects.equals(nombre, empleado.nombre) && Objects.equals(apellidos, empleado.apellidos) && Objects.equals(fechaNacimiento, empleado.fechaNacimiento);
+        return numEmpleado == empleado.numEmpleado && Double.compare(salario, empleado.salario) == 0 && Double.compare(salarioMax, empleado.salarioMax) == 0 && Objects.equals(nombre, empleado.nombre) && Objects.equals(departamento, empleado.departamento) && Objects.equals(fechaNacimiento, empleado.fechaNacimiento);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(numEmpleado, nombre, apellidos, fechaNacimiento, salario, salarioMax);
+        return Objects.hash(numEmpleado, nombre, departamento, fechaNacimiento, salario, salarioMax);
     }
 
     @Override
@@ -100,7 +100,7 @@ public class Empleado {
         return "Empleado{" +
                 "numEmpleado=" + numEmpleado +
                 ", nombre='" + nombre + '\'' +
-                ", apellidos='" + apellidos + '\'' +
+                ", departamento='" + departamento + '\'' +
                 ", fechaNacimiento=" + fechaNacimiento +
                 ", salario=" + salario +
                 ", salarioMax=" + salarioMax +
