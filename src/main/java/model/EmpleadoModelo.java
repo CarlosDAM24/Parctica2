@@ -22,11 +22,14 @@ public class EmpleadoModelo {
     }
 
     public Empleado getEmpleadoActual() {
+        if (listaEmpleados.isEmpty()) {
+            return null;
+        }
         return listaEmpleados.get(indiceActual);
     }
 
     public void siguienteEmpleado() {
-        if (indiceActual < listaEmpleados.size()) {
+        if (indiceActual < listaEmpleados.size() - 1) {
             indiceActual++;
         }
     }
@@ -37,13 +40,22 @@ public class EmpleadoModelo {
         }
     }
 
+    public void irPrimerEmpleado() {
+        indiceActual = 0;
+    }
+
+    public void irUltimoEmpleado() {
+        indiceActual = listaEmpleados.size() - 1;
+    }
+
     public boolean esUltimoEmpleado() {
-        return indiceActual == listaEmpleados.size();
+        return indiceActual == listaEmpleados.size() - 1;
     }
 
     public boolean esPrimerEmpleado() {
         return indiceActual == 0;
     }
+
 
     public void agregarEmpleado(Empleado empleado) {
         listaEmpleados.add(empleado);

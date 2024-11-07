@@ -52,4 +52,33 @@ public class PanelDatos extends JPanel {
         
     }
 
+    public void actualizarDatos(Empleado empleado) {
+        tfNombre.setText(empleado.getNombre());
+        tfFechaNac.setText(empleado.getFechaNacimiento().toString());
+        tfDepart.setText(empleado.getDepartamento());
+        tfSalario.setText(String.valueOf(empleado.getSalario()));
+    }
+    public void limpiarCampos() {
+        tfNombre.setText("");
+        tfFechaNac.setText("");
+        tfDepart.setText("");
+        tfSalario.setText("");
+    }
+
+    public JTextField getTfNombre() {
+        return tfNombre;
+    }
+
+    public JTextField getTfFechaNac() {
+        return tfFechaNac;
+    }
+
+    public JTextField getTfDepart() {
+        return tfDepart;
+    }
+
+    public JTextField getTfSalario() {
+        return tfSalario;
+    }
+
 }

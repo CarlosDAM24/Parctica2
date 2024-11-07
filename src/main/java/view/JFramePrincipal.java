@@ -13,6 +13,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
+import controlador.EmpleadoControlador;
+import model.EmpleadoModelo;
 import model.PanelDatos;
 
 public class JFramePrincipal extends JFrame {
@@ -31,10 +33,12 @@ public class JFramePrincipal extends JFrame {
 	// Creación menu y opciones
 	private JMenuBar menuPaneles;
 	private JMenuItem mntmVer, mntmAlta, mntmAcerca;
-	
-	
-	
-	
+
+
+	private EmpleadoControlador controlador;
+
+
+
 
 	public JFramePrincipal() {
 				
@@ -49,16 +53,45 @@ public class JFramePrincipal extends JFrame {
 		setContentPane(panPrincipal);
 		panPrincipal.setLayout(new BorderLayout(0, 0));
 		
-		addComponents();
+		addComponents(); // no entendí cual era la intencion
 		
-		addListeners();
-		
-			
-		
+		addListeners();  // no entendí cual era la intencion
+
+		// Inicializa el modelo, el panel de datos, y el controlador
+		EmpleadoModelo modelo = new EmpleadoModelo();
+		PanelDatos panelDatos = (PanelDatos) panDatosVer; // Usa el panelDatosVer de Ver Empleados
+		controlador = new EmpleadoControlador(modelo, panelDatos,this);
+
+		// Asigna los botones de navegación al controlador
+		btnPrimero.addActionListener(e -> controlador.mostrarPrimerEmpleado());
+		btnRetroceder.addActionListener(e -> controlador.mostrarAnteriorEmpleado());
+		btnAvanzar.addActionListener(e -> controlador.mostrarSiguienteEmpleado());
+		btnUltimo.addActionListener(e -> controlador.mostrarUltimoEmpleado());
+
+		controlador.mostrarEmpleadoActual();
+	}
+	public PanelDatos getPanDatosAlta() {
+		return (PanelDatos) panDatosAlta;  // Método para acceder al panel de alta desde el controlador
 	}
 
 	private void addListeners() {
-		
+
+
+		// Acción del botón Aceptar (Agregar nuevo empleado)
+		btnAceptar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlador.agregarNuevoEmpleado();  // Agregar el nuevo empleado
+			}
+		});
+
+		// Acción del botón Cancelar (Limpiar los campos)
+		btnCancelar.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				controlador.limpiarCamposAlta();  // Limpiar los campos de alta
+			}
+		});
 		 // Acciones de menú
         mntmAlta.addActionListener(new ActionListener() {
             @Override
@@ -173,6 +206,13 @@ public class JFramePrincipal extends JFrame {
 	    
 				
 		
+	}
+	public JButton getBtnRetroceder() {
+		return btnRetroceder;
+	}
+
+	public JButton getBtnAvanzar() {
+		return btnAvanzar;
 	}
 	
 	
