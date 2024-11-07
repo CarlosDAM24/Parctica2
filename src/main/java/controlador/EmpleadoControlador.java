@@ -78,6 +78,7 @@ public class EmpleadoControlador {
 
         // Mostrar un mensaje de éxito
         JOptionPane.showMessageDialog(null, "Empleado agregado correctamente.");
+        vista.actualizarDatos(nuevoEmpleado);
     }
 
 }

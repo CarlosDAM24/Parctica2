@@ -1,6 +1,8 @@
 package model;
 
 import java.awt.GridLayout;
+import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -11,7 +13,7 @@ public class PanelDatos extends JPanel {
     private static final long serialVersionUID = 1L;
 	private JTextField tfNombre, tfFechaNac, tfDepart, tfSalario;
     private JLabel lblNombre, lblFechaNac, lblDepart, lblSalario;
-	
+    private DateTimeFormatter formatoPersonalizado = DateTimeFormatter.ofPattern("d 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
 
     public PanelDatos(boolean isEditable) {
         setLayout(new GridLayout(4, 2, 5, 5));
@@ -54,7 +56,7 @@ public class PanelDatos extends JPanel {
 
     public void actualizarDatos(Empleado empleado) {
         tfNombre.setText(empleado.getNombre());
-        tfFechaNac.setText(empleado.getFechaNacimiento().toString());
+        tfFechaNac.setText(empleado.getFechaNacimiento().format(formatoPersonalizado));
         tfDepart.setText(empleado.getDepartamento());
         tfSalario.setText(String.valueOf(empleado.getSalario()));
     }
