@@ -15,6 +15,7 @@ public class PanelDatos extends JPanel {
     private JLabel lblNombre, lblFechaNac, lblDepart, lblSalario;
     private DateTimeFormatter formatoPersonalizado = DateTimeFormatter.ofPattern("d 'de' MMMM 'de' yyyy", new Locale("es", "ES"));
 
+
     public PanelDatos(boolean isEditable) {
         setLayout(new GridLayout(4, 2, 5, 5));
         lblNombre = new JLabel("Nombre:");
